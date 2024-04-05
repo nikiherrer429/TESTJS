@@ -1,0 +1,88 @@
+/* TEST JS */
+/*
+    1. Problem 1 - (A)
+    Create an Object with a "hello" method that writes "Hello <name> in the console"
+*/
+
+// Creates a constant variable 'greeter' and initializes it with an object 
+const greeter = {
+
+  //Asign the method called as 'hello' with the 'greeter' object and usign the method as an anonymous function using 'function' as keyword
+ hello: function() {
+    //Ask for the name with the prompt fuction creating a dialog box with a message and an input field, the value is stored in the name  variable usign the 'conts' keyword
+    const name = prompt("Please enter your name:");
+    //here we use 'console.log'to output the message to the console; it concatenates the string "hello" and the value stored in name variable
+    console.log("Hello " + name);
+     }
+};
+
+// Call the hello method of the greeter object. when exceuted it will prompt the string name plus the value stord in name variable.
+greeter.hello(); 
+
+
+/*
+    2. Problem 1 - (B)
+    How would you make name inmutable?
+    (Can write or just describe)
+
+*/
+//You can use the 'const' keyword to declare it, this will prevent the reassigment of the 'name' variable once it´s has been initialized, taking the code avobe we can see that the value is inmutable
+  
+
+/*
+    3. Problem 2
+    Write a funtion that logs the 5 cities that occur the most in the array below in
+    order from the most number of occurrences to least.
+*/
+//here we named the function that takes an array of 'citieslist' as input
+function MostFrequentCities(citiesList) {
+  // we create an object to store the frequency of each city
+  const cityCounts = {};
+  
+  // here we count the occurrences of each city taking care of the repeat ones
+  citiesList.forEach(city => {
+    if (cityCounts[city]) {
+      cityCounts[city]++;
+    } else {
+      cityCounts[city] = 1;
+    }
+  });
+  
+  // now we convert the object into an array of [city, count] pairs
+  const cityCountsArray = Object.entries(cityCounts);
+  
+  // the next step is sorting the array based on the count in descending order
+  cityCountsArray.sort((a, b) => b[1] - a[1]);
+  
+  // and finally we can log the 5 cities with the most occurrences
+  for (let i = 0; i < Math.min(5, cityCountsArray.length); i++) {
+    console.log(`${cityCountsArray[i][0]}: ${cityCountsArray[i][1]} occurrences`);
+  }
+}
+//cities in the example
+const citiesList = [
+    "nasville",
+    "nasville",
+    "los angeles",
+    "nasville",
+    "Madrid",
+    "memphis",
+    "barcelona",
+    "los angeles",
+    "sevilla",
+    "Madrid",
+    "canary islands",
+    "barcelona",
+    "Madrid",
+    "Madrid",
+    "nasville",
+    "barcelona",
+    "london",
+    "berlin",
+    "Madrid",
+    "nasville",
+    "london",
+    "Madrid",
+    "Madrid",
+]
+MostFrequentCities(citiesList);
